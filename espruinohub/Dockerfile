@@ -11,7 +11,7 @@ RUN apk update
 RUN apk add --no-cache nodejs
 RUN apk add --no-cache npm
 RUN apk add --no-cache --virtual .build-dependencies python
-RUN apk add --no-cache --virtual .build-dependencies build-base=0.5-r1
+#RUN apk add --no-cache --virtual .build-dependencies build-base=0.5-r1
 RUN apk add --no-cache --virtual .build-dependencies bluez
 RUN apk add --no-cache --virtual .build-dependencies linux-headers
 RUN apk add --no-cache --virtual .build-dependencies eudev-dev
