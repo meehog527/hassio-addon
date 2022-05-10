@@ -18,9 +18,9 @@ RUN \
         linux-headers \
         eudev-dev \
         git \
-    && git clone https://github.com/espruino/EspruinoHub
-    && cd EspruinoHub
-    && npm install
+    && git clone https://github.com/espruino/EspruinoHub \
+    && cd EspruinoHub \
+    && npm install 
 #   && npm -g i espruino 
     
 # Copy data for add-on
