@@ -1,6 +1,6 @@
 # About
 
-This is an unofficial [EspruinoHub](https://github.com/espruino/EspruinoHub) addon to Hass.io
+This is an unofficial [EspruinoHub](https://github.com/espruino/EspruinoHub) addon to Hass.io forked by meehog527
 
 # Configuration
 
