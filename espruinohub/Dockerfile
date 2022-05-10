@@ -15,13 +15,13 @@ RUN \
     && yarn global add npm \
     && yarn cache clean \
     && apk del yarn \
-    && npm set unsafe-perm true \
     && apk add --no-cache --virtual .build-dependencies \
         python3 \
         bluez linux-headers \
         eudev-dev \
         git
-    
+        
+RUN npm set unsafe-perm true   
 RUN VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" 
 RUN NODE_PATH="/usr/lib/node_modules"
 RUN npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" 
