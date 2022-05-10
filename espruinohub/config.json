@@ -5,7 +5,7 @@
     "description": "BLE MQTT bridge",
     "startup": "before",
     "boot": "auto",
-    "arch": ["armhf", "armv7", "i386", "arm64"],
+    "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
     "options": {
       "known_devices": {
       },
