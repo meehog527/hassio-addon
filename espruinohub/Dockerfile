@@ -2,50 +2,18 @@ ARG BUILD_FROM
 FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN apk add --no-cache \
-    nodejs \
-    npm \
-    git
+ADD package.json /
 
-RUN cd / && npm install --unsafe-perm
-    
-RUN VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" 
-RUN NODE_PATH="/usr/lib/node_modules" 
-    
-RUN 
-RUN apk del --no-cache --purge .build-dependencies
 
-# Copy root file system
-# COPY rootfs /
+RUN \ 
+    apk add --no-cache \
+        nodejs \
+        npm
 
-# Build arguments
-ARG BUILD_ARCH
-ARG BUILD_DATE
-ARG BUILD_REF
-ARG BUILD_VERSION
+# Copy data for add-on
+COPY run.sh /
+COPY index.js /
+RUN chmod a+x /run.sh
 
-WORKDIR /var/espruinohub
-
-COPY run.sh /var/espruinohub/run.sh
-RUN chmod +x /var/espruinohub/run.sh
-
-CMD /var/espruinohub/run.sh
-
-# Labels
-LABEL \
-    io.hass.name="EspruinoHub" \
-    io.hass.description="BLE MQTT bridge" \
-    io.hass.arch="${BUILD_ARCH}" \
-    io.hass.type="addon" \
-    io.hass.version=${BUILD_VERSION} \
-    maintainer="Matias Käkelä" \
-    org.label-schema.description="BLE MQTT bridge" \
-    org.label-schema.build-date=${BUILD_DATE} \
-    org.label-schema.name="EspruinoHub" \
-    org.label-schema.schema-version="0.4.0" \
-    org.label-schema.usage="https://github.com/massive/hassio-espruinohub/blob/master/README.md" \
-    org.label-schema.vcs-ref=${BUILD_REF} \
-    org.label-schema.vcs-url="https://github.com/massive/hassio-espruinohub.git" \
-    org.label-schema.vendor="Community Hass.io Addons"
+CMD [ "/run.sh" ]
