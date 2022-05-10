@@ -8,7 +8,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_ARCH=amd64
 
 RUN apk update
-RUN apk add bluetooth
 RUN apk add bluez
 RUN apk add libbluetooth-dev
 RUN apk add libudev-dev
