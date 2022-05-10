@@ -7,18 +7,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Setup base system
 ARG BUILD_ARCH=amd64
 
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-                       bluetooth \
-                       bluez \
-                       libbluetooth-dev \
-                       libudev-dev \
-                       mosquitto-clients \
-                       build-essential \
-                       python3 \
-                       ca-certificates \
-                       curl \
- && apt-get clean
+RUN \
+    apt-get update \
 
 RUN update-ca-certificates --fresh
 
