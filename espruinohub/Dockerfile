@@ -11,18 +11,21 @@ USER root
 
 RUN \
     apk update \
-    && apk add --no-cache nodejs nodejs-npm \
-    && npm set unsafe-perm true \ 
+    && apk add --no-cache nodejs nodejs-npm npm \
+
     && apk add --no-cache --virtual .build-dependencies \
         python3 \
         bluez \
         linux-headers \
         eudev-dev \
         git \ 
-    && VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" \
-    && NODE_PATH="/usr/lib/node_modules" 
+    && cd / && npm install --unsafe-perm
+    RUN npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" 
     
-RUN npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" 
+RUN VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" 
+RUN NODE_PATH="/usr/lib/node_modules" 
+    
+RUN 
 RUN apk del --no-cache --purge .build-dependencies
 
 # Copy root file system
