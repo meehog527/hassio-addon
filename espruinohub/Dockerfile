@@ -10,12 +10,12 @@ ARG BUILD_ARCH=amd64
 RUN apk update
 RUN apk add --no-cache nodejs
 RUN apk add --no-cache npm
-RUN apk add --no-cache --virtual .build-dependencies python=2.7.16-r1
-RUN apk add --no-cache --virtual .build-dependencies build-base=0.5-r1
-RUN apk add --no-cache --virtual .build-dependencies bluez=5.50-r3
-RUN apk add --no-cache --virtual .build-dependencies linux-headers=4.19.36-r0
-RUN apk add --no-cache --virtual .build-dependencies eudev-dev=3.2.8-r0
-RUN apk add --no-cache --virtual .build-dependencies git=2.24.2-r0
+RUN apk add --no-cache --virtual .build-dependencies python
+RUN apk add --no-cache --virtual .build-dependencies build-base
+RUN apk add --no-cache --virtual .build-dependencies bluez
+RUN apk add --no-cache --virtual .build-dependencies linux-headers
+RUN apk add --no-cache --virtual .build-dependencies eudev-dev
+RUN apk add --no-cache --virtual .build-dependencies git
 
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.gz" \
  && tar -xzf "node-v$NODE_VERSION-linux-$ARCH.tar.gz" -C /usr/local --strip-components=1 \
