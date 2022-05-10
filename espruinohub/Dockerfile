@@ -1,5 +1,4 @@
-ARG BUILD_FROM=hassioaddons/base:7.6.0
-FROM ${BUILD_FROM}
+FROM --platform=linux/arm64 torizon/debian:2-bullseye
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
