@@ -17,7 +17,7 @@ RUN \
         bluez \
         linux-headers \
         eudev-dev \
-        git 
+        git \
     && npm i espruino 
     
 # Copy data for add-on
