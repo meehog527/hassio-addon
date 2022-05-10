@@ -4,6 +4,14 @@ FROM ${BUILD_FROM}
 ARG ARCH=arm64
 ARG NODE_VERSION=8.17.0
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+ENV LANG C.UTF-8
+
+USER root
+
+ARG BUILD_ARCH
+
 RUN apt-get update 
 RUN apt-get install -y bluetooth
 RUN apt-get install -y bluez
