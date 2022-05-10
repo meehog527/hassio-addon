@@ -9,8 +9,15 @@ ADD package.json /
 RUN \ 
     apk add --no-cache \
         nodejs \
-        npm
-
+        npm \ 
+    && cd / && npm install --unsafe-perm \
+    && apk add --no-cache --virtual .build-dependencies \
+        python3 \
+        bluez \
+        linux-headers \
+        eudev-dev \
+        git 
+   
 # Copy data for add-on
 COPY run.sh /
 COPY index.js /
