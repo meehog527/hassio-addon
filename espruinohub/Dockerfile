@@ -19,7 +19,7 @@ RUN \
         bluez \
         linux-headers \
         eudev-dev \
-        git 
+        git \
      && cd / && npm install --unsafe-perm \
 
 #   && npm -g i espruino 
