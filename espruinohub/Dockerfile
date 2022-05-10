@@ -1,7 +1,7 @@
 ARG BUILD_FROM=hassioaddons/base:7.1.0
 FROM ${BUILD_FROM}
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ENV LANG C.UTF-8
 
