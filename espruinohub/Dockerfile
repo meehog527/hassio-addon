@@ -9,11 +9,7 @@ ARG BUILD_ARCH=amd64
 
 USER root
 
-RUN apk update && apk add --no-cache nodejs npm && apk add --no-cache --virtual .build-dependencies python3 bluez linux-headers eudev-dev git
-
-##RUN apk add --no-cache --virtual .build-dependencies build-base
-
-RUN npm set unsafe-perm true
+RUN apk update && apk add --no-cache nodejs npm && apk add --no-cache --virtual .build-dependencies python3 bluez linux-headers eudev-dev git && npm set unsafe-perm true
 RUN VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" 
 RUN NODE_PATH="/usr/lib/node_modules"
 RUN npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" 
