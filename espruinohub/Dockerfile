@@ -32,3 +32,8 @@ RUN npm install \
 VOLUME ["/EspruinoHub/log"]
 
 ENTRYPOINT ["node", "index.js"]
+
+COPY run.sh /var/espruinohub/run.sh
+RUN chmod +x /var/espruinohub/run.sh
+
+CMD /var/espruinohub/run.sh 
