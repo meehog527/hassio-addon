@@ -8,10 +8,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_ARCH=amd64
 
 RUN apk update
-RUN apk add --no-cache nodejs
-RUN apk add --no-cache npm 
+RUN apk add --no-cache nodejs npm
 RUN apk add --no-cache --virtual .build-dependencies python3
-RUN apk add --no-cache --virtual .build-dependencies build-base
+##RUN apk add --no-cache --virtual .build-dependencies build-base
 RUN apk add --no-cache --virtual .build-dependencies bluez
 RUN apk add --no-cache --virtual .build-dependencies linux-headers
 RUN apk add --no-cache --virtual .build-dependencies eudev-dev
