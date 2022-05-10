@@ -17,10 +17,6 @@ RUN apk add --no-cache --virtual .build-dependencies linux-headers
 RUN apk add --no-cache --virtual .build-dependencies eudev-dev
 RUN apk add --no-cache --virtual .build-dependencies git
 
-RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.gz" \
- && tar -xzf "node-v$NODE_VERSION-linux-$ARCH.tar.gz" -C /usr/local --strip-components=1 \
- && rm "node-v$NODE_VERSION-linux-$ARCH.tar.gz"
-
 # Copy root file system
 # COPY rootfs /
 
