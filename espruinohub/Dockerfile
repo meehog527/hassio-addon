@@ -8,7 +8,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_ARCH=amd64
 
 RUN apt-get update \
- && apt-get install -y bluetooth \
+  && apt-get install -y --no-install-recommends \
+                       bluetooth \
                        bluez \
                        libbluetooth-dev \
                        libudev-dev \
