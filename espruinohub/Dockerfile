@@ -7,16 +7,7 @@ USER root
 
 ARG BUILD_ARCH
 
-RUN apt-get update \
- && apt-get install -y bluetooth \
-                       bluez \
-                       libbluetooth-dev \
-                       libudev-dev \
-                       mosquitto-clients \
-                       build-essential \
-                       python3 \
-                       ca-certificates \
- && apt-get clean
+RUN apt-get update 
 
 RUN update-ca-certificates --fresh
 
