@@ -11,8 +11,8 @@ RUN \
         nodejs \
         npm \ 
     && git clone "https://github.com/espruino/EspruinoHub.git" \
-    && cd EspruinoHub \
-    && npm install 
+#    && cd EspruinoHub \
+#    && npm install \
     
     && apk add --no-cache --virtual .build-dependencies \
         python3 \
