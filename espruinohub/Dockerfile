@@ -8,16 +8,15 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_ARCH=amd64
 
 RUN apk update
-RUN apk add --no-cache nodejs=16.15.0-r0
-RUN apk add --no-cache npm
-RUN apk add --no-cache --virtual .build-dependencies python
-#RUN apk add --no-cache --virtual .build-dependencies build-base=0.5-r1
+RUN apk add --no-cache nodejs
+RUN apk add --no-cache npm && npm set unsafe-perm true
+RUN apk add --no-cache --virtual .build-dependencies python3
+RUN apk add --no-cache --virtual .build-dependencies build-base
 RUN apk add --no-cache --virtual .build-dependencies bluez
 RUN apk add --no-cache --virtual .build-dependencies linux-headers
 RUN apk add --no-cache --virtual .build-dependencies eudev-dev
 RUN apk add --no-cache --virtual .build-dependencies git
 
-RUN npm set unsafe-perm true
 RUN VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" 
 RUN NODE_PATH="/usr/lib/node_modules"
 RUN npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" 
