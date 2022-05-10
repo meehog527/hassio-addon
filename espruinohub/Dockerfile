@@ -11,6 +11,9 @@ RUN \
         nodejs \
         npm \ 
     && cd / && npm install --unsafe-perm \
+    && VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" \
+    && NODE_PATH="/usr/lib/node_modules" \
+    && npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" \
     && apk add --no-cache --virtual .build-dependencies \
         python3 \
         bluez \
