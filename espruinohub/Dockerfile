@@ -14,7 +14,7 @@ RUN \
 #    && cd EspruinoHub \
 #    && npm install \
     
-    && apk add --no-cache --virtual .build-dependencies \
+RUN    apk add --no-cache --virtual .build-dependencies \
         python3 \
         bluez \
         linux-headers \
