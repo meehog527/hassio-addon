@@ -18,7 +18,7 @@ RUN \
         linux-headers \
         eudev-dev \
         git \
-    && npm i espruino 
+    && npm -g i espruino 
     
 # Copy data for add-on
 COPY run.sh /
