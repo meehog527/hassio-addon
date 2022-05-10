@@ -10,7 +10,10 @@ ARG BUILD_ARCH=amd64
 USER root
 
 RUN apk update
+
 RUN apk add --no-cache nodejs npm
+ENV PATH /app/node_modules/.bin:$PATH
+
 RUN apk add --no-cache --virtual .build-dependencies python3 bluez linux-headers eudev-dev git
 ##RUN apk add --no-cache --virtual .build-dependencies build-base
 
