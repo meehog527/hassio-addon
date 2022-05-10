@@ -54,7 +54,7 @@ LABEL \
     org.label-schema.build-date=${BUILD_DATE} \
     org.label-schema.name="EspruinoHub" \
     org.label-schema.schema-version="0.4.0" \
-    org.label-schema.usage="https://github.com/massive/hassio-espruinohub/blob/master/README.md" \
+    org.label-schema.usage="https://github.com/meehog527/hassio-espruinohub/blob/master/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
-    org.label-schema.vcs-url="https://github.com/massive/hassio-espruinohub.git" \
+    org.label-schema.vcs-url="https://github.com/meehog527/hassio-espruinohub.git" \
     org.label-schema.vendor="Community Hass.io Addons"
