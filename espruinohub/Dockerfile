@@ -15,7 +15,7 @@ RUN \
     yarn global add npm && \
     yarn cache clean && \
     apk del yarn && \
-    npm set unsafe-perm true
+#    npm set unsafe-perm true
     
     RUN npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" 
     
