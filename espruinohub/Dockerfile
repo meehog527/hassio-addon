@@ -10,7 +10,7 @@ RUN \
     apk add --no-cache \
         nodejs \
         npm \ 
-    && git clone "https://github.com/espruino/EspruinoHub.git" \
+    && git clone "https://github.com/espruino/EspruinoHub.git"
 #    && cd EspruinoHub \
 #    && npm install \
     
