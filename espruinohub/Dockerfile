@@ -1,31 +1,29 @@
-FROM --platform=linux/arm64 torizon/debian:2-bullseye
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.3.0
+FROM ${BUILD_FROM}
 
-ENV LANG C.UTF-8
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-USER root
+# Setup base system
+ARG BUILD_ARCH=amd64
 
-ARG BUILD_ARCH
+RUN apt-get update \
+ && apt-get install -y bluetooth \
+                       bluez \
+                       libbluetooth-dev \
+                       libudev-dev \
+                       mosquitto-clients \
+                       build-essential \
+                       python3 \
+                       ca-certificates \
+                       curl \
+ && apt-get clean
 
-RUN \
-    apk update \
-    apk add --no-cache \
-        nodejs=10.16.3-r0 \
-        npm=10.16.3-r0 \
-    && apk add --no-cache --virtual .build-dependencies \
-        python=2.7.16-r1 \
-        build-base=0.5-r1 \
-        bluez=5.50-r3 \
-        linux-headers=4.19.36-r0 \
-        eudev-dev=3.2.8-r0 \
-        git=2.24.2-r0 \
-    \
-    && npm set unsafe-perm true \
-    && VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" \
-    && NODE_PATH="/usr/lib/node_modules" \
-    && npm -g i \
-        "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" \
-    \
-    && apk del --no-cache --purge .build-dependencies
+RUN update-ca-certificates --fresh
+
+RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.gz" \
+ && tar -xzf "node-v$NODE_VERSION-linux-$ARCH.tar.gz" -C /usr/local --strip-components=1 \
+ && rm "node-v$NODE_VERSION-linux-$ARCH.tar.gz"
 
 # Copy root file system
 # COPY rootfs /
