@@ -1,8 +1,5 @@
-ARG BUILD_FROM
-
+ARG BUILD_FROM=hassioaddons/base:7.6.0
 FROM ${BUILD_FROM}
-ARG ARCH=arm64
-ARG NODE_VERSION=8.17.0
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -12,35 +9,56 @@ USER root
 
 ARG BUILD_ARCH
 
-RUN apt-get update 
-RUN apt-get install -y bluetooth
-RUN apt-get install -y bluez
-RUN apt-get install -y libbluetooth-dev
-RUN apt-get install -y libudev-dev
-RUN apt-get install -y mosquitto-clients
-RUN apt-get install -y build-essential
-RUN apt-get install -y python3
-RUN apt-get install -y ca-certificates
-RUN apt-get install -y curl
-RUN apt-get clean
-RUN update-ca-certificates --fresh
+RUN \
+    apk update \
+    apk add --no-cache \
+        nodejs=10.16.3-r0 \
+        npm=10.16.3-r0 \
+    && apk add --no-cache --virtual .build-dependencies \
+        python=2.7.16-r1 \
+        build-base=0.5-r1 \
+        bluez=5.50-r3 \
+        linux-headers=4.19.36-r0 \
+        eudev-dev=3.2.8-r0 \
+        git=2.24.2-r0 \
+    \
+    && npm set unsafe-perm true \
+    && VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" \
+    && NODE_PATH="/usr/lib/node_modules" \
+    && npm -g i \
+        "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" \
+    \
+    && apk del --no-cache --purge .build-dependencies
 
-RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$BUILD_FROM.tar.gz" \
- && tar -xzf "node-v$NODE_VERSION-linux-$BUILD_FROM.tar.gz" -C /usr/local --strip-components=1 \
- && rm "node-v$NODE_VERSION-linux-$BUILD_FROM.tar.gz"
+# Copy root file system
+# COPY rootfs /
 
-ADD / /EspruinoHub
+# Build arguments
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_REF
+ARG BUILD_VERSION
 
-WORKDIR /EspruinoHub
-
-RUN npm install \
- && npm cache clean --force
-
-VOLUME ["/EspruinoHub/log"]
-
-ENTRYPOINT ["node", "index.js"]
+WORKDIR /var/espruinohub
 
 COPY run.sh /var/espruinohub/run.sh
 RUN chmod +x /var/espruinohub/run.sh
 
-CMD /var/espruinohub/run.sh 
+CMD /var/espruinohub/run.sh
+
+# Labels
+LABEL \
+    io.hass.name="EspruinoHub" \
+    io.hass.description="BLE MQTT bridge" \
+    io.hass.arch="${BUILD_ARCH}" \
+    io.hass.type="addon" \
+    io.hass.version=${BUILD_VERSION} \
+    maintainer="Matias Käkelä" \
+    org.label-schema.description="BLE MQTT bridge" \
+    org.label-schema.build-date=${BUILD_DATE} \
+    org.label-schema.name="EspruinoHub" \
+    org.label-schema.schema-version="0.4.0" \
+    org.label-schema.usage="https://github.com/massive/hassio-espruinohub/blob/master/README.md" \
+    org.label-schema.vcs-ref=${BUILD_REF} \
+    org.label-schema.vcs-url="https://github.com/massive/hassio-espruinohub.git" \
+    org.label-schema.vendor="Community Hass.io Addons"
