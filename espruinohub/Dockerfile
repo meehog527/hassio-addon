@@ -18,7 +18,7 @@ RUN \
         linux-headers \
         eudev-dev \
         git \
-    && git clone https://github.com/espruino/EspruinoHub \
+    && git clone "https://github.com/espruino/EspruinoHub" \
     && cd EspruinoHub \
     && npm install 
 #   && npm -g i espruino 
