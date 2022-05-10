@@ -1,5 +1,5 @@
 ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM ${BUILD_FROM}
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -44,17 +44,18 @@ CMD /var/espruinohub/run.sh
 
 # Labels
 LABEL \
-    io.hass.name="EspruinoHub" \
-    io.hass.description="BLE MQTT bridge" \
+    io.hass.name="espuinohub" \
+    io.hass.description="Hass.IO Espurinohub" \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="Matias Käkelä" \
-    org.label-schema.description="BLE MQTT bridge" \
+    maintainer="Balda" \
+    org.label-schema.description="Hass.IO Espruinohub" \
     org.label-schema.build-date=${BUILD_DATE} \
-    org.label-schema.name="EspruinoHub" \
-    org.label-schema.schema-version="0.4.0" \
-    org.label-schema.usage="https://github.com/meehog527/hassio-espruinohub/blob/master/README.md" \
+    org.label-schema.name="ruuvitag-discovery" \
+    org.label-schema.schema-version="1.0" \
+    org.label-schema.url="https://github.com/meehog527/hassio-espruinohub" \
+    org.label-schema.usage="https://github.com/meehog527/hassio-espruinohub/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
-    org.label-schema.vcs-url="https://github.com/meehog527/hassio-espruinohub.git" \
+    org.label-schema.vcs-url="https://github.com/meehog527/hassio-espruinohub" \
     org.label-schema.vendor="Community Hass.io Addons"
