@@ -10,7 +10,9 @@ RUN \
     apk add --no-cache \
         nodejs \
         npm \ 
-    && cd / && npm install --unsafe-perm \
+    && git clone "https://github.com/espruino/EspruinoHub.git" \
+    && cd EspruinoHub \
+    && npm install 
     
     && apk add --no-cache --virtual .build-dependencies \
         python3 \
@@ -18,9 +20,8 @@ RUN \
         linux-headers \
         eudev-dev \
         git 
-RUN git clone "https://github.com/espruino/EspruinoHub.git" \
-    && cd EspruinoHub \
-    && npm install 
+     && cd / && npm install --unsafe-perm \
+
 #   && npm -g i espruino 
     
 # Copy data for add-on
