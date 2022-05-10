@@ -8,7 +8,14 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_ARCH=amd64
 
 RUN apk update
-RUN apk add --no-cache nodejs=10.16.3-r0 npm=10.16.3-r0
+RUN apk add bluetooth
+RUN apk add bluez
+RUN apk add libbluetooth-dev
+RUN apk add libudev-dev
+RUN apk add mosquitto-clients
+RUN apk add build-essential
+RUN apk add python3
+RUN apk add ca-certificates
     
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.gz" \
  && tar -xzf "node-v$NODE_VERSION-linux-$ARCH.tar.gz" -C /usr/local --strip-components=1 \
