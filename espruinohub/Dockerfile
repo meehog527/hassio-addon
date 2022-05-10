@@ -1,23 +1,15 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.3.0
-FROM ${BUILD_FROM}
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-# Set shell
+ENV LANG C.UTF-8
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-# Setup base system
-ARG BUILD_ARCH=amd64
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    git
 
-USER root
-
-RUN \
-    apk update && \
-    apk add --no-cache nodejs-current yarn && \
-    yarn global add npm && \
-    yarn cache clean && \
-    apk del yarn
-#    npm set unsafe-perm true
-    
-    RUN npm -g i "git+https://github.com/espruino/EspruinoHub.git#${VERSION}" 
+RUN cd / && npm install --unsafe-perm
     
 RUN VERSION="76753003df534b32d2e9dad9fa74aeb0e93876a1" 
 RUN NODE_PATH="/usr/lib/node_modules" 
