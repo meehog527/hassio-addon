@@ -7,8 +7,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Setup base system
 ARG BUILD_ARCH=amd64
 
-RUN \
-    apt-get update
+RUN apt-get update
 
 RUN update-ca-certificates --fresh
 
