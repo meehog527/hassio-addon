@@ -11,14 +11,15 @@ RUN \
         nodejs \
         npm \ 
     && cd / && npm install --unsafe-perm \
-    && npm i espruino \
+    
     && apk add --no-cache --virtual .build-dependencies \
         python3 \
         bluez \
         linux-headers \
         eudev-dev \
         git 
-   
+    && npm i espruino 
+    
 # Copy data for add-on
 COPY run.sh /
 COPY index.js /
