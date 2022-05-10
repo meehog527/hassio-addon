@@ -11,10 +11,7 @@ USER root
 
 RUN \
     apk update \
-    && apk add --no-cache nodejs yarn \
-    && yarn global add npm \
-    && yarn cache clean \
-    && apk del yarn \
+    && apk add --no-cache nodejs nodejs-npm \
     && apk add --no-cache --virtual .build-dependencies \
         python3 \
         bluez linux-headers \
