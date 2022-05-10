@@ -11,7 +11,7 @@ USER root
 
 RUN \
     apk update \
-    && apk add --no-cache nodejs nodejs-npm npm \
+    && apk add --no-cache nodejs npm \
 
     && apk add --no-cache --virtual .build-dependencies \
         python3 \
