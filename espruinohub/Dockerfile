@@ -1,32 +1,33 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.3.0
+FROM ${BUILD_FROM}
 
-ENV LANG C.UTF-8
+ARG ARCH=arm64
+ARG NODE_VERSION=8.17.0
 
-ADD package.json /
+RUN apt-get update \
+ && apt-get install -y bluetooth \
+                       bluez \
+                       libbluetooth-dev \
+                       libudev-dev \
+                       mosquitto-clients \
+                       build-essential \
+                       python3 \
+                       ca-certificates \
+ && apt-get clean
 
+RUN update-ca-certificates --fresh
 
-RUN \ 
-    apk add --no-cache \
-        nodejs \
-        npm \ 
-    && git clone "https://github.com/espruino/EspruinoHub.git"
-#    && cd EspruinoHub \
-#    && npm install \
-    
-RUN    apk add --no-cache --virtual .build-dependencies \
-        python3 \
-        bluez \
-        linux-headers \
-        eudev-dev \
-        git \
-     && cd / && npm install --unsafe-perm \
+RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.gz" \
+ && tar -xzf "node-v$NODE_VERSION-linux-$ARCH.tar.gz" -C /usr/local --strip-components=1 \
+ && rm "node-v$NODE_VERSION-linux-$ARCH.tar.gz"
 
-#   && npm -g i espruino 
-    
-# Copy data for add-on
-COPY run.sh /
-COPY index.js /
-RUN chmod a+x /run.sh
+ADD / /EspruinoHub
 
-CMD [ "/run.sh" ]
+WORKDIR /EspruinoHub
+
+RUN npm install \
+ && npm cache clean --force
+
+VOLUME ["/EspruinoHub/log"]
+
+ENTRYPOINT ["node", "index.js"]
