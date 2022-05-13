@@ -19,7 +19,10 @@ RUN \
     glib \
     glib-dev
 
-RUN git clone https://github.com/meehog527/bt-mqtt-gateway.git
+#RUN git clone https://github.com/meehog527/bt-mqtt-gateway.git
+
+# Copy root filesystem
+COPY rootfs /
 
 # Copy data for add-on
 COPY run.sh /
