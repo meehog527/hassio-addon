@@ -1,9 +1,9 @@
 {
-  "name": "Portainer",
+  "name": "Bluetooth MQTT Gateway",
   "version": "dev",
-  "slug": "portainer",
-  "description": "Manage your Docker environment with ease",
-  "url": "https://github.com/hassio-addons/addon-portainer",
+  "slug": "btmqttgw",
+  "description": "Bluetooth MQTT Gateway",
+  "url": "https://github.com/meehog527/hassio-addon/addon-btmqttgateway",
   "advanced": true,
   "ingress": true,
   "ingress_stream": true,
@@ -12,10 +12,10 @@
   "arch": ["aarch64", "amd64", "armhf", "armv7"],
   "init": false,
   "ports": {
-    "8000/tcp": null
+    "1999/tcp": null
   },
   "ports_description": {
-    "8000/tcp": "Edge Agent Api (Enable when managing remote edge agents)"
+    "1999/tcp": ""
   },
   "hassio_api": true,
   "docker_api": true,
