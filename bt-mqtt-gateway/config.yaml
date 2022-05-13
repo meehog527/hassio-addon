@@ -1,7 +1,7 @@
 name: bt-mqtt-gateway
 version: dev
 slug: bt-mqtt-gateway
-description: Flow-based programming for the Internet of Things
+description: Bluetooth MQTT Gateway
 url: https://github.com/hassio-addons/addon-node-red
 codenotary: codenotary@frenck.dev
 ingress: true
