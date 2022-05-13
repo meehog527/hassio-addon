@@ -17,17 +17,12 @@ RUN \
     py3-setuptools \
     bluez \
     glib \
-    glib-dev
-
-#RUN git clone https://github.com/meehog527/bt-mqtt-gateway.git
+    glib-dev \ 
+    g++ \
+    make
 
 # Copy root filesystem
 COPY rootfs /
-
-# Copy data for add-on
-#COPY run.sh /
-#RUN chmod a+x /run.sh
-#CMD [ "/run.sh" ]
 
 # Build arguments
 ARG BUILD_ARCH
