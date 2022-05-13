@@ -5,7 +5,6 @@
 # ==============================================================================
 
 bashio::log.info "Starting BT-MQTT Gateway..."
-bashio::log.info "Installing python packages..."
 
 bashio::log.info "Installing default packages..."
 pip3 install paho-mqtt pyyaml interruptingcow apscheduler tenacity
