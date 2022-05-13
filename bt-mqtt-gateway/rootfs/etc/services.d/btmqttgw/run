@@ -6,6 +6,8 @@
 
 bashio::log.info "Starting BT-MQTT Gateway..."
 
+setcap cap_net_raw+eip $(eval readlink -f `which node`)
+
 bashio::log.info "Installing default packages..."
 pip3 install paho-mqtt pyyaml interruptingcow apscheduler tenacity
 
