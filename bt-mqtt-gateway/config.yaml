@@ -31,15 +31,8 @@ map:
   - share:rw
   - ssl
 options:
-  credential_secret: ""
-  theme: default
-  http_node:
+  mqtt:
     username: ""
     password: ""
-  http_static:
-    username: ""
-    password: ""
-  ssl: true
-  certfile: fullchain.pem
-  keyfile: privkey.pem
+    clientid: ""
   system_packages: []
