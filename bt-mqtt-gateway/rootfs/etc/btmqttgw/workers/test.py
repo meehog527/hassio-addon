@@ -20,4 +20,4 @@ class TestWorker(BaseWorker):
           }
       devices.append(device)
     json_devices = json.dumps(devices)
-    return [MqttMessage(topic=self.format_topic('number'), payload=str(json_devices)]
+    return [MqttMessage(topic=self.format_topic('number'), payload=str(json_devices))]
