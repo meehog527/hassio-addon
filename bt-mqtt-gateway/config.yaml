@@ -36,3 +36,12 @@ options:
     password: ""
     clientid: ""
   system_packages: []
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?
+  theme: list(default|dark|dracula|midnight-red|oled|solarized-dark|solarized-light)?
+  mqtt:
+    username: str
+    password: password
+    clientid: str
+  system_packages:
+    - str
