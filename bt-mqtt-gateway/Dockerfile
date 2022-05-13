@@ -12,6 +12,7 @@ RUN                   \
   apk add --no-cache  \
     python3           \
     python3-dev       \
+    pybluez           \
     py3-pip           \
     py3-yaml          \
     py3-wheel         \ 
