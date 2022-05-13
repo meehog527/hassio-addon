@@ -7,6 +7,9 @@
 bashio::log.info "Starting BT-MQTT Gateway..."
 bashio::log.info "Installing python packages..."
 
+bashio::log.info "Installing default packages..."
+pip3 install paho-mqtt pyyaml interruptingcow apscheduler tenacity
+
 system_packages=$(bashio::config 'system_packages')
 bashio::log.info "Installing $system_packages"
 pip3 install $system_packages
