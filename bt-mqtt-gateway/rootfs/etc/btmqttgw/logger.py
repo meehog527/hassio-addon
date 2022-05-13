@@ -1,13 +1,18 @@
 import logging
 import logging.config
 import yaml
+import os
 
-APP_ROOT = "bt-mqtt-gw"
+APP_ROOT = "btmqttgw"
 SUPPRESSION_ENABLED = False
 
+def make_path(name):
+    here = os.path.dirname(os.path.abspath(__file__))
+    filename = os.path.join(here, name)
+    return filename
 
 def setup():
-    with open("logger.yaml", "rt") as f:
+    with open(make_path("logger.yaml"), "rt") as f:
         config = yaml.safe_load(f.read())
         logging.config.dictConfig(config)
 
