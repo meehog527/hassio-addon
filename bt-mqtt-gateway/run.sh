@@ -1,3 +1,4 @@
+#! 
 echo "Installing python packages"
 sudo pip3 install -r requirements.txt
 sudo apt-get remove git -y
