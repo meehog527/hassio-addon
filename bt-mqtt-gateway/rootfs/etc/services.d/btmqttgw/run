@@ -12,4 +12,4 @@ bashio::log.info "Installing $system_packages"
 pip3 install $system_packages
 
 bashio::log.info "Initilizing BT-MQTT Gateway..."
-python3 gateway.py
+python3 /etc/btmqttgw/gateway.py
