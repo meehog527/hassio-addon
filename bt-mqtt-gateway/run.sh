@@ -6,7 +6,7 @@
 
 bashio::log.info "Starting BT-MQTT Gateway..."
 bashio::log.info "Installing python packages..."
-pip3 install -r requirements.txt
+pip3 install -r /requirements.txt
 apt-get remove git -y
 apt-get clean
 
