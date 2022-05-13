@@ -12,7 +12,7 @@ class TestWorker(BaseWorker):
   def status_update(self):
     found_devices = bluetooth.discover_devices(lookup_names = True, lookup_class = True)
     reported_devices = []
-    for addr, name, device_class in devices:
+    for addr, name, device_class in found_devices:
       device = {
             "name": name,
             "address": address,
