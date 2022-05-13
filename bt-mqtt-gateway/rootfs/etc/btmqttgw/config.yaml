@@ -27,7 +27,7 @@ manager:
       args:
         topic_prefix: test
       topic_subscription: thermostat/+/+/set
-      update_interval: 60
+      update_interval: 10
     # mysensors:
     #   command_timeout: 35       # Optional override of globally set command_timeout.
     #   command_retries: 0        # Optional override of globally set command_retries.
