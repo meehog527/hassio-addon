@@ -25,9 +25,9 @@ RUN \
 COPY rootfs /
 
 # Copy data for add-on
-COPY run.sh /
-RUN chmod a+x /run.sh
-CMD [ "/run.sh" ]
+#COPY run.sh /
+#RUN chmod a+x /run.sh
+#CMD [ "/run.sh" ]
 
 # Build arguments
 ARG BUILD_ARCH
