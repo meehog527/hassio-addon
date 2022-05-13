@@ -7,9 +7,9 @@
 bashio::log.info "Starting BT-MQTT Gateway..."
 bashio::log.info "Installing python packages..."
 
-pip3 install -r /etc/btmqttgw/requirements.txt
-apt-get remove git -y
-apt-get clean
+system_packages=$(bashio::config 'system packages')
+bashio::log.info "Installing $system_packages"
+pip3 install $system_packages
 
 bashio::log.info "Initilizing BT-MQTT Gateway..."
 python3 gateway.py
