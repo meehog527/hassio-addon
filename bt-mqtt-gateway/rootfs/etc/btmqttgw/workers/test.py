@@ -18,6 +18,6 @@ class TestWorker(BaseWorker):
             "address": address,
             "device_class": device_class
           }
-      devices.append(device)
-    json_devices = json.dumps(devices)
+      reported_devices.append(device)
+    json_devices = json.dumps(reported_devices)
     return [MqttMessage(topic=self.format_topic('number'), payload=str(json_devices))]
