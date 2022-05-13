@@ -8,18 +8,19 @@ ARG BUILD_ARCH=amd64
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install requirements for add-on
-RUN \
-  apk add --no-cache \
-    git \
-    python3 \
-    py3-pip \
-    python3-dev \
-    py3-setuptools \
-    bluez \
-    glib \
-    glib-dev \ 
-    g++ \
+RUN                   \
+  apk add --no-cache  \
+    python3           \
+    python3-dev       \
+    py3-pip           \
+    py3-wheel         \ 
+    py3-setuptools    \
+    bluez             \
+    glib              \
+    glib-dev          \ 
+    g++               \
     make
+    
 
 # Copy root filesystem
 COPY rootfs /
