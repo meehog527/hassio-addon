@@ -10,7 +10,7 @@ bashio::log.info "Installing python packages..."
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo $SCRIPT_DIR
 
-pip3 install -r ./requirements.txt
+pip3 install -r /requirements.txt
 apt-get remove git -y
 apt-get clean
 
