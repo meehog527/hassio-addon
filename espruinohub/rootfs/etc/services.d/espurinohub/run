@@ -1,6 +1,9 @@
 #!/bin/bash
 cd `dirname $0`
 
+service dbus start
+service bluetooth start
+
 setcap cap_net_raw+eip $(eval readlink -f `which node`)
 
 if node /rootfs/etc/espurinohub/needs-bleno.js > /dev/null; then
