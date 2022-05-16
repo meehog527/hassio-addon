@@ -2,7 +2,7 @@
 cd `dirname $0`
 
 service dbus start
-service bluetooth start
+service bluetoothhd start
 
 setcap cap_net_raw+eip $(eval readlink -f `which node`)
 
