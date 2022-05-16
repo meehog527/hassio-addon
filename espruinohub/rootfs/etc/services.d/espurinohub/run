@@ -4,7 +4,7 @@ cd `dirname $0`
 # Stop terminal screensaver
 setterm --blank 0
 
-sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)
+setcap cap_net_raw+eip $(eval readlink -f `which node`)
 
 if node needs-bleno.js > /dev/null; then
   echo "Starting with Bleno (GATT Server)"
