@@ -39,7 +39,8 @@ RUN  \
         ca-certificates \
         util-linux \
         libcap \
-        dbus\
+        dbus \
+        openrc \
     \
     && npm config set unsafe-perm true \
     \
