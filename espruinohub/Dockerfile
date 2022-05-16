@@ -59,7 +59,7 @@ RUN  \
 RUN update-ca-certificates --fresh
 
 # Environment variables
-ENV NODE_ICU_DATA=/etc/node_modules/full-icu
+ENV NODE_ICU_DATA=/opt/node_modules/full-icu
 
 # Copy root filesystem
 COPY rootfs /
