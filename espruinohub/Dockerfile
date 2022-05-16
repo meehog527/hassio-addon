@@ -4,6 +4,12 @@ FROM ${BUILD_FROM}
 ARG ARCH=arm64
 ARG NODE_VERSION=8.17.0
 
+# Copy Node-RED package.json
+COPY package.json requirements.txt /opt/
+
+# Set workdir
+WORKDIR /opt
+
 RUN  \
     apk add --no-cache --virtual .build-dependencies \
         g++=10.3.1_git20211027-r0 \
@@ -54,7 +60,7 @@ WORKDIR /etc/espruinohub
 RUN npm install \
  && npm cache clean --force
 
-VOLUME ["/EspruinoHub/log"]
+VOLUME ["etc/espruinohub/log"]
 
 
 
