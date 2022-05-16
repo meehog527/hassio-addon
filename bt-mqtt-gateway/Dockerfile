@@ -21,7 +21,8 @@ RUN                   \
     glib              \
     glib-dev          \ 
     g++               \
-    make
+    make              \
+    libcap
     
 
 # Copy root filesystem
