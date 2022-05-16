@@ -37,6 +37,8 @@ RUN  \
         eudev-dev \
         mosquitto-clients \
         ca-certificates \
+        util-linux \
+        libcap \
     \
     && npm config set unsafe-perm true \
     \
