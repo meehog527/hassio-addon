@@ -1,8 +1,8 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:11.1.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/base/aarch64:11.1.2
 FROM ${BUILD_FROM}
 
 # Setup base
-ARG BUILD_ARCH=amd64
+ARG BUILD_ARCH=aarch64
 
 # Copy Node-RED package.json
 COPY package.json requirements.txt /opt/
@@ -30,10 +30,10 @@ RUN  \
         patch \
         python3 \
         bluez \
-        bluez-lib \
+        bluez-libs \
         bluez-dev \
         eudev \ 
-        eudev-lib \
+        eudev-libs \
         eudev-dev \
         mosquitto-clients \
         ca-certificates \
@@ -54,6 +54,9 @@ RUN  \
 
 RUN update-ca-certificates --fresh
 
+# Environment variables
+ENV NODE_ICU_DATA=/opt/node_modules/full-icu
+
 # Copy root filesystem
 COPY rootfs /
 
@@ -63,7 +66,7 @@ WORKDIR /etc/espurinohub
 RUN npm install \
  && npm cache clean --force
 
-VOLUME ["etc/espruinohub/log"]
+VOLUME ["/etc/espruinohub/log"]
 
 # Build arguments
 ARG BUILD_ARCH
