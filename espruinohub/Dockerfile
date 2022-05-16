@@ -38,7 +38,7 @@ RUN  \
     \
     && npm config set unsafe-perm true \
     \
-    && pip install --no-cache-dir -r /requirements.txt \
+    && pip install --no-cache-dir -r /opt/requirements.txt \
     \
     && npm install \
         --no-audit \
