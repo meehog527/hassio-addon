@@ -1,6 +1,8 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:11.1.2
-# hadolint ignore=DL3006
+ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:11.1.0
 FROM ${BUILD_FROM}
+
+# Setup base
+ARG BUILD_ARCH=amd64
 
 # Copy Node-RED package.json
 COPY package.json requirements.txt /opt/
