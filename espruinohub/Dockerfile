@@ -4,22 +4,47 @@ FROM ${BUILD_FROM}
 ARG ARCH=arm64
 ARG NODE_VERSION=8.17.0
 
-RUN apt-get update \
- && apt-get install -y bluetooth \
-                       bluez \
-                       libbluetooth-dev \
-                       libudev-dev \
-                       mosquitto-clients \
-                       build-essential \
-                       python3 \
-                       ca-certificates \
- && apt-get clean
+RUN  \
+    apk add --no-cache --virtual .build-dependencies \
+        g++=10.3.1_git20211027-r0 \
+        gcc=10.3.1_git20211027-r0 \
+        libc-dev=0.7.2-r3 \
+        linux-headers=5.10.41-r0 \
+        make=4.3-r0 \
+        py3-pip=20.3.4-r1 \
+        python3-dev=3.9.7-r4 \
+    \
+    && apk add --no-cache \
+        git=2.34.2-r0 \
+        nodejs=16.14.2-r0 \
+        nodejs-dev \
+        npm=8.1.3-r0 \
+        patch=2.7.6-r7 \
+        python3=3.9.7-r4 \
+        bluez \
+        bluez-lib \
+        bluez-dev \
+        eudev \ 
+        eudev-lib \
+        eudev-dev \
+        mosquitto-clients \
+        ca-certificates \
+    \
+    && npm config set unsafe-perm true \
+    \
+    && pip install --no-cache-dir -r /opt/requirements.txt \
+    \
+    && npm install \
+        --no-audit \
+        --no-optional \
+        --no-update-notifier \
+        --only=production \
+        --unsafe-perm \
+    \
+    && npm cache clear --force \
+    \
 
 RUN update-ca-certificates --fresh
-
-RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.gz" \
- && tar -xzf "node-v$NODE_VERSION-linux-$ARCH.tar.gz" -C /usr/local --strip-components=1 \
- && rm "node-v$NODE_VERSION-linux-$ARCH.tar.gz"
 
 ADD / /EspruinoHub
 
@@ -29,5 +54,3 @@ RUN npm install \
  && npm cache clean --force
 
 VOLUME ["/EspruinoHub/log"]
-
-ENTRYPOINT ["node", "index.js"]
